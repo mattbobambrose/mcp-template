@@ -13,6 +13,13 @@ in Claude Desktop via MCP servers.
 Create a repository from [this template](https://github.com/mattbobambrose/mcp-template)
 In an Intellij terminal, either run ```make jar runsse``` or run SSEMain.
 
+## Tools
+
+There are two ways to add new tools to the MCP server:
+
+1. Create a class such as `Tools.kt` and create functions annotated with `@LLMTool`
+2. Call the `addTool()` function in createServer() in `MCPServer.kt`
+
 ## Testing with MCP Inspector
 
 Launch the [mcp inspector](https://github.com/modelcontextprotocol/inspector) in a terminal with
@@ -80,10 +87,3 @@ failing:
 ```bash
 tail -n 20 -F ~/Library/Logs/Claude/mcp*.log
 ```
-
-## Tools
-
-There are two ways to add new tools to the MCP server:
-
-1. Create a class such as `Tools.kt` and create functions annotated with `@LLMTool`
-2. Call the `addTool()` function in createServer() in `MCPServer.kt`
