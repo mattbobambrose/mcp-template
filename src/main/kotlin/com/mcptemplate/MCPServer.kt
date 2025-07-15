@@ -1,8 +1,11 @@
 package com.mcptemplate
 
 import com.mattbobambrose.mcp_utils.tools.integrateTools
+import io.modelcontextprotocol.kotlin.sdk.CallToolResult
 import io.modelcontextprotocol.kotlin.sdk.Implementation
 import io.modelcontextprotocol.kotlin.sdk.ServerCapabilities
+import io.modelcontextprotocol.kotlin.sdk.TextContent
+import io.modelcontextprotocol.kotlin.sdk.Tool
 import io.modelcontextprotocol.kotlin.sdk.server.Server
 import io.modelcontextprotocol.kotlin.sdk.server.ServerOptions
 
@@ -21,4 +24,13 @@ fun createServer() =
     )
   ).apply {
     integrateTools(MyTools())
+    addTool(
+      name = "kotlin-sdk-tool",
+      description = "A test tool",
+      inputSchema = Tool.Input()
+    ) { request ->
+      CallToolResult(
+        content = listOf(TextContent("Hello, world!"))
+      )
+    }
   }
