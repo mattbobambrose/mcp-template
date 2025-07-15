@@ -4,7 +4,9 @@
 
 ## Overview
 
-Jetbrains provides
+Jetbrains provides an sdk that implements MCP in Kotlin. This template provides
+an easy out-of-box experience that demonstrates how to call custom tools
+in Claude Desktop via MCP servers.
 
 # Creating a server
 
