@@ -8,4 +8,10 @@ jar: build
 	./gradlew SSEServer StdioServer
 
 runsse:
-	java -jar /Users/mambrose/git/LLM-internals-exercise/build/libs/SSEServer.jar
+	java -jar ./build/libs/SSEServer.jar
+
+build-docker: jar
+	docker build -t my-mcp-server .
+
+run-docker:
+	docker run -p 8080:8080 my-mcp-server

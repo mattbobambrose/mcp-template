@@ -1,4 +1,6 @@
-package com.mattbobambroseimport io.ktor.utils.io.streams.asInput
+package com.mcptemplate
+
+import io.ktor.utils.io.streams.asInput
 import io.modelcontextprotocol.kotlin.sdk.server.StdioServerTransport
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.runBlocking
