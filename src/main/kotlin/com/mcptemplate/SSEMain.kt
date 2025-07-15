@@ -13,6 +13,7 @@ fun main() {
       createServer()
     }
     routing {
+      // Add an endpoint for checking for liveliness
       get("/ping") {
         call.respondText("pong")
       }

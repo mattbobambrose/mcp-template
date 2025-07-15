@@ -1,4 +1,14 @@
-1. Create a repository from this template
+# Kotlin MCP Template
+
+[![Kotlin](https://img.shields.io/badge/%20language-Kotlin-red.svg)](https://kotlinlang.org/)
+
+## Overview
+
+Jetbrains provides
+
+# Creating a server
+
+1. Create a repository from this template: https://github.com/mattbobambrose/mcp-template
 2. Download Claude Desktop from https://claude.ai/download and sign in if needed.
 3. In an Intellij terminal, either run ```make jar runsse``` or run SSEMain.
 4. As described in https://github.com/modelcontextprotocol/inspector, launch the mcp inspector in a terminal with
@@ -6,7 +16,7 @@
 npx @modelcontextprotocol/inspector
 ```
 
-If you receive the error ```Connection Error - Check if your MCP server is running and proxy token is correct```,
+If you receive the error `Connection Error - Check if your MCP server is running and proxy token is correct`,
 then run with authentication turned off with
 
 ```bash
@@ -63,3 +73,10 @@ failing:
 ```bash
 tail -n 20 -F ~/Library/Logs/Claude/mcp*.log
 ```
+
+## Tools
+
+There are two ways to add new tools to the MCP server:
+
+1. Create a class such as `Tools.kt` and create functions annotated with `@LLMTool`
+2. Call the `addTool()` function in createServer() in `MCPServer.kt`

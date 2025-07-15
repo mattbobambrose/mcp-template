@@ -2,7 +2,6 @@ package com.mcptemplate
 
 import com.mattbobambrose.mcp_utils.tools.LLMTool
 
-
 class MyTools {
   @LLMTool("List of cities in California")
   fun getCities(): List<String> {

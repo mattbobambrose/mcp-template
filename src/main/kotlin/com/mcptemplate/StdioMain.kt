@@ -15,8 +15,8 @@ fun main() {
 
   runBlocking {
     createServer().apply {
-      connect(transport)
       val done = Job()
+      connect(transport)
       onClose {
         done.complete()
       }
