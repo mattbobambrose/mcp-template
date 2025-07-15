@@ -1,16 +1,21 @@
-As described in https://github.com/modelcontextprotocol/inspector, launch in the terminal with
-
+1. Create a repository from this template
+2. Download Claude Desktop from https://claude.ai/download and sign in if needed.
+3. In an Intellij terminal, either run ```make jar runsse``` or run SSEMain.
+4. As described in https://github.com/modelcontextprotocol/inspector, launch the mcp inspector in a terminal with
 ```bash 
 npx @modelcontextprotocol/inspector
 ```
 
-and run with authentication turned off with
+If you receive the error ```Connection Error - Check if your MCP server is running and proxy token is correct```,
+then run with authentication turned off with
 
 ```bash
 DANGEROUSLY_OMIT_AUTH=true npx @modelcontextprotocol/inspector
 ```
 
-The config file should look like
+5. Open Claude Desktop and go to Claude -> Settings -> Developer -> Edit Config.
+   There will be a file called claude_desktop_config.json. Open that in your choice
+   of IDE. It should be formatted as such:
 
 ```JSON
 {
@@ -42,6 +47,15 @@ The config file should look like
   }
 }
 ```
+
+Choose either the ```"weather-stdio"``` block to connect with stdio,
+the ```"weather-sse"``` block to connect with sse,
+or the ```"mydocker"``` block to connect with docker.
+
+6. Quit and reopen Claude Desktop, check the Search and Tools button for the tools
+   available to the llm, and ask Claude a question that custom tools can answer.
+   If it uses web search to get its answer, include "Use the tools provided and
+   don't use the web" in your prompt.
 
 When debugging Claude Desktop, running this in the terminal will give you an idea of why your MCP connections are
 failing:

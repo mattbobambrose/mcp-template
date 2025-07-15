@@ -8,19 +8,19 @@ import kotlinx.io.asSink
 import kotlinx.io.buffered
 
 fun main() {
-  val server = createServer()
-
   val transport = StdioServerTransport(
     System.`in`.asInput(),
     System.out.asSink().buffered()
   )
 
   runBlocking {
-    server.connect(transport)
-    val done = Job()
-    server.onClose {
-      done.complete()
+    createServer().apply {
+      connect(transport)
+      val done = Job()
+      onClose {
+        done.complete()
+      }
+      done.join()
     }
-    done.join()
   }
 }
