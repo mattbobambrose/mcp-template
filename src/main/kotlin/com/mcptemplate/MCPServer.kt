@@ -1,6 +1,6 @@
 package com.mcptemplate
 
-//import com.mattbobambrose.mcp_utils.tools.integrateTools4
+import com.mattbobambrose.mcp_utils.tools.integrateTools
 import io.modelcontextprotocol.kotlin.sdk.Implementation
 import io.modelcontextprotocol.kotlin.sdk.ServerCapabilities
 import io.modelcontextprotocol.kotlin.sdk.server.Server
@@ -20,5 +20,5 @@ fun createServer() =
       )
     )
   ).apply {
-//    integrateTools4(MyTools())
+    integrateTools(MyTools())
   }
