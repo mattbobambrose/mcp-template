@@ -8,12 +8,14 @@ Jetbrains provides an sdk that implements MCP in Kotlin. This template provides
 an easy out-of-box experience that demonstrates how to call custom tools
 in Claude Desktop via MCP servers.
 
-# Creating a server
+## Creating a server
 
-1. Create a repository from [this template](https://github.com/mattbobambrose/mcp-template)
-2. Download [Claude Desktop] (https://claude.ai/download) and sign in if needed.
-3. In an Intellij terminal, either run ```make jar runsse``` or run SSEMain.
-4. Launch the [mcp inspector] (https://github.com/modelcontextprotocol/inspector) in a terminal with
+Create a repository from [this template](https://github.com/mattbobambrose/mcp-template)
+In an Intellij terminal, either run ```make jar runsse``` or run SSEMain.
+
+## Testing with MCP Inspector
+
+Launch the [mcp inspector](https://github.com/modelcontextprotocol/inspector) in a terminal with
 ```bash 
 npx @modelcontextprotocol/inspector
 ```
@@ -25,9 +27,12 @@ then run with authentication turned off with
 DANGEROUSLY_OMIT_AUTH=true npx @modelcontextprotocol/inspector
 ```
 
-5. Open Claude Desktop and go to Claude -> Settings -> Developer -> Edit Config.
-   There will be a file called claude_desktop_config.json. Open that in your choice
-   of IDE. It should be formatted as such:
+## Working with Claude Desktop
+
+Download [Claude Desktop](https://claude.ai/download) and sign in if needed.
+Open Claude Desktop and go to Claude -> Settings -> Developer -> Edit Config.
+There will be a file called claude_desktop_config.json. Open that in your choice
+of IDE. It should be formatted as such:
 
 ```JSON
 {
@@ -64,10 +69,10 @@ Choose either the ```"weather-stdio"``` block to connect with stdio,
 the ```"weather-sse"``` block to connect with sse,
 or the ```"mydocker"``` block to connect with docker.
 
-6. Quit and reopen Claude Desktop, check the Search and Tools button for the tools
-   available to the llm, and ask Claude a question that custom tools can answer.
-   If it uses web search to get its answer, include "Use the tools provided and
-   don't use the web" in your prompt.
+Quit and reopen Claude Desktop, check the Search and Tools button for the tools
+available to the llm, and ask Claude a question that custom tools can answer.
+If it uses web search to get its answer, include "Use the tools provided and
+don't use the web" in your prompt.
 
 When debugging Claude Desktop, running this in the terminal will give you an idea of why your MCP connections are
 failing:
