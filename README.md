@@ -10,10 +10,10 @@ in Claude Desktop via MCP servers.
 
 # Creating a server
 
-1. Create a repository from this template: https://github.com/mattbobambrose/mcp-template
-2. Download Claude Desktop from https://claude.ai/download and sign in if needed.
+1. Create a repository from [this template](https://github.com/mattbobambrose/mcp-template)
+2. Download [Claude Desktop] (https://claude.ai/download) and sign in if needed.
 3. In an Intellij terminal, either run ```make jar runsse``` or run SSEMain.
-4. As described in https://github.com/modelcontextprotocol/inspector, launch the mcp inspector in a terminal with
+4. Launch the [mcp inspector] (https://github.com/modelcontextprotocol/inspector) in a terminal with
 ```bash 
 npx @modelcontextprotocol/inspector
 ```
