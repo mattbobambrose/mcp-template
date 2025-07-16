@@ -4,9 +4,11 @@
 
 ## Overview
 
-Jetbrains provides an sdk that implements MCP in Kotlin. This template provides
-an easy out-of-box experience that demonstrates how to call custom tools
-in Claude Desktop via MCP servers.
+This repository provides a Kotlin template for building MCP (Model Context Protocol)
+servers that integrate custom tools with MCP clients. Built with the JetBrains
+[Kotlin MCP SDK](https://github.com/modelcontextprotocol/kotlin-sdk),
+it demonstrates SSE (Server-Sent Events) and STDIO transport methods and
+how to integrate custom tools.
 
 ## Setup
 
@@ -19,16 +21,16 @@ in Claude Desktop via MCP servers.
 ## Building an SSE Server
 
 * The SSE server can be run from Intellij by running the main() in SSEMain.kt
-* To run from the CLI, build the jar with `./gradlew SSEServer` and run with
+* To run from the CLI, build the jar with `./gradlew sse` and run with
   `java -jar ./build/libs/SSEServer.jar`
 
 ## Building an STDIO Server
 
-* Build the jar with `./gradlew StdioServer` and run with the desired MCP client.
+* Build the jar with `./gradlew stdio` and run with the desired MCP client.
 
 ## Testing with MCP Inspector
 
-Launch the [mcp inspector](https://github.com/modelcontextprotocol/inspector) in a terminal window with
+Launch the [MCP Inspector](https://github.com/modelcontextprotocol/inspector) with:
 ```bash 
 DANGEROUSLY_OMIT_AUTH=true npx @modelcontextprotocol/inspector
 ```

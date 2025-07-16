@@ -11,26 +11,6 @@ application {
   mainClass = "SSEMainKt"
 }
 
-tasks.register<ShadowJar>("SSEServer") {
-  dependsOn(tasks.shadowJar)
-  archiveFileName = "SSEServer.jar"
-  manifest {
-    attributes["Main-Class"] = "com.mcptemplate.SSEMainKt"
-  }
-  from(sourceSets.main.get().output)
-  configurations = listOf(project.configurations.runtimeClasspath.get())
-}
-
-tasks.register<ShadowJar>("StdioServer") {
-  dependsOn(tasks.shadowJar)
-  archiveFileName = "StdioServer.jar"
-  manifest {
-    attributes["Main-Class"] = "com.mcptemplate.StdioMainKt"
-  }
-  from(sourceSets.main.get().output)
-  configurations = listOf(project.configurations.runtimeClasspath.get())
-}
-
 group = "com.mcptemplate"
 version = "1.0"
 
@@ -59,4 +39,24 @@ kotlin {
 
 configurations.all {
   resolutionStrategy.cacheChangingModulesFor(0, "seconds")
+}
+
+tasks.register<ShadowJar>("sse") {
+  dependsOn(tasks.shadowJar)
+  archiveFileName = "SSEServer.jar"
+  manifest {
+    attributes["Main-Class"] = "com.mcptemplate.SSEMainKt"
+  }
+  from(sourceSets.main.get().output)
+  configurations = listOf(project.configurations.runtimeClasspath.get())
+}
+
+tasks.register<ShadowJar>("stdio") {
+  dependsOn(tasks.shadowJar)
+  archiveFileName = "StdioServer.jar"
+  manifest {
+    attributes["Main-Class"] = "com.mcptemplate.StdioMainKt"
+  }
+  from(sourceSets.main.get().output)
+  configurations = listOf(project.configurations.runtimeClasspath.get())
 }

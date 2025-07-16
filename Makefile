@@ -5,13 +5,13 @@ build: clean
 	./gradlew build
 
 sse: build
-	./gradlew SSEServer
+	./gradlew sse
 
 stdio: build
-	./gradlew StdioServer
+	./gradlew stdio
 
 jars: sse stdio
-	./gradlew SSEServer StdioServer
+	./gradlew sse stdio
 
 runsse:
 	java -jar ./build/libs/SSEServer.jar
