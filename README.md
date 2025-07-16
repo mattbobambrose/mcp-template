@@ -8,34 +8,35 @@ Jetbrains provides an sdk that implements MCP in Kotlin. This template provides
 an easy out-of-box experience that demonstrates how to call custom tools
 in Claude Desktop via MCP servers.
 
-## Creating a server
+## Setup
 
 * Click on
   the [![](https://github.com/mattbobambrose/mcp-template/blob/master/docs/template_button.png)button](https://github.com/mattbobambrose/mcp-template/generate)
-  above to clone the template repo and create your own ReadingBat content
+  above to clone the template repo and create your own MCP server.
 
-In an Intellij terminal, either run ```make jar runsse``` or run SSEMain.
+* Open the code in [Intellij](https://www.jetbrains.com/idea/).
 
-## Tools
+## Building an SSE Server
 
-There are two ways to add new tools to the MCP server:
+* The SSE server can be run from Intellij by running the main() in SSEMain.kt
+* To run from the CLI, build the jar with `./gradlew SSEServer` and run with
+  `java -jar ./build/libs/SSEServer.jar`.
 
-1. Create a class such as `Tools.kt` and create functions annotated with `@LLMTool`
-2. Call the `addTool()` function in createServer() in `MCPServer.kt`
+## Building an STDIO Server
+
+* Build the jar with `./gradlew StdioServer` and run with the desired MCP client.
 
 ## Testing with MCP Inspector
 
-Launch the [mcp inspector](https://github.com/modelcontextprotocol/inspector) in a terminal with
+Launch the [mcp inspector](https://github.com/modelcontextprotocol/inspector) in a terminal window with
 ```bash 
-npx @modelcontextprotocol/inspector
-```
-
-If you receive the error `Connection Error - Check if your MCP server is running and proxy token is correct`,
-then run with authentication turned off with
-
-```bash
 DANGEROUSLY_OMIT_AUTH=true npx @modelcontextprotocol/inspector
 ```
+
+### SSE Configuration
+
+* Select SSE for the `Transport Type`
+* Enter `https&#58;&#47;&#47:localhost:8080/sse` for the `URL`
 
 ## Working with Claude Desktop
 
@@ -90,3 +91,10 @@ failing:
 ```bash
 tail -n 20 -F ~/Library/Logs/Claude/mcp*.log
 ```
+
+## Tools
+
+There are two ways to add new tools to the MCP server:
+
+1. Create a class such as `Tools.kt` and create functions annotated with `@LLMTool`
+2. Call the `addTool()` function in createServer() in `MCPServer.kt`
