@@ -10,7 +10,12 @@ in Claude Desktop via MCP servers.
 
 ## Creating a server
 
-Create a repository from [this template](https://github.com/mattbobambrose/mcp-template)
+* Click on
+  the [![](https://github.com/mattbobambrose/mcp-template/blob/master/docs/template_button.png)button](https://github.com/mattbobambrose/mcp-template/generate)
+
+Create a repository from [this template](https://github.com/mattbobambrose/mcp-template) by clicking on the
+`Use this template` button.
+
 In an Intellij terminal, either run ```make jar runsse``` or run SSEMain.
 
 ## Tools
