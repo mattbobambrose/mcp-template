@@ -36,7 +36,7 @@ DANGEROUSLY_OMIT_AUTH=true npx @modelcontextprotocol/inspector
 ### SSE Configuration
 
 * Select SSE for the `Transport Type`
-* Enter http&#58;&#47;&#47:localhost:8080/sse for the `URL`
+* Enter <span>http://localhost:8080/sse</span> for the `URL`
 
 ## Working with Claude Desktop
 
