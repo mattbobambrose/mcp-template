@@ -4,12 +4,12 @@ import com.mattbobambrose.mcp_utils.tools.LLMTool
 
 class MyTools {
   @LLMTool("List of cities in California")
-  fun getCities(): List<String> {
+  fun getCaCities(): List<String> {
     return listOf("Diablo", "Danville", "San Francisco", "San Ramon", "Sacramento")
   }
 
   @LLMTool("Get the temperature of a city in California")
-  fun getTemperature(city: String): String {
+  fun getCaTemperature(city: String): String {
     return when (city) {
       "Diablo" -> "50 degrees"
       "Danville" -> "60 degrees"

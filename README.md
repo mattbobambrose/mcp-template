@@ -20,7 +20,7 @@ in Claude Desktop via MCP servers.
 
 * The SSE server can be run from Intellij by running the main() in SSEMain.kt
 * To run from the CLI, build the jar with `./gradlew SSEServer` and run with
-  `java -jar ./build/libs/SSEServer.jar`.
+  `java -jar ./build/libs/SSEServer.jar`
 
 ## Building an STDIO Server
 
@@ -35,39 +35,66 @@ DANGEROUSLY_OMIT_AUTH=true npx @modelcontextprotocol/inspector
 
 ### SSE Configuration
 
-* Select SSE for the `Transport Type`
-* Enter <span>http://localhost:8080/sse</span> for the `URL`
+* Select SSE for the `Transport Type`.
+* Enter `http://localhost:8080/sse` for the `URL`
+* Click on `Connect`.
+* Click on the `Tools` icon and `List Tools` to see what tools are available.
+* Click on `getCities` tools entry and then click on `Run Tool` to verify the results.
+* `getTemperature` causes problems in the MCP Inspector, so don't test it for now.
 
-## Working with Claude Desktop
+### STDIO Configuration
 
-Download [Claude Desktop](https://claude.ai/download) and sign in if needed.
-Open Claude Desktop and go to Claude -> Settings -> Developer -> Edit Config.
-There will be a file called claude_desktop_config.json. Open that in your choice
-of IDE. It should be formatted as such:
+* Select STDIO for the `Transport Type`
+* Enter `java` for the `Command` and `-jar /<absolute-path-to-repo>/mcp-template/build/libs/StdioServer.jar` for the
+  `Arguments`
+* Click on `Connect`
+* Click on the `Tools` icon and `List Tools` to see what tools are available.
+* Click on `getCities` tools entry and then click on `Run Tool` to verify the results.
+* `getTemperature` causes problems in the MCP Inspector, so don't test it for now.
+* Note: If you recompile the jar, you will need to restart the MCP Inspector as well.
 
+### Docker Configuration
+
+The Docker configuration will create an image using the SSEServer.jar.
+
+* Build the jar with `./gradlew sse`
+* Build the image with `docker build -t my-mcp-server .`
+* Run the container with `docker run -p 8080:8080 my-mcp-server`
+* Confirm that the container is running using the MCP Inspector as described above in the SSE Configuration section.
+
+## Working with Claude Desktop and SSE
+
+* Download [Claude Desktop](https://claude.ai/download) and sign in if needed.
+* Start the server using either `java -jar ./build/libs/SSEServer.jar` or `docker run -p 8080:8080 my-mcp-server`
+* Open Claude Desktop and go to Claude -> Settings -> Developer -> Edit Config.
+* If you're running the jar file, edit `claude_desktop_config.json` as follows:
+
+###  
 ```JSON
 {
   "mcpServers": {
-    "weather-stdio": {
-      "command": "java",
-      "args": [
-        "-jar",
-        "/Users/mambrose/git/mcp-template/build/libs/StdioServer.jar"
-      ]
-    },
-    "weather-sse": {
+    "sse-mcp-template": {
       "command": "npx",
       "args": [
         "-y",
         "mcp-remote",
         "http://localhost:8080/sse"
       ]
-    },
-    "mydocker": {
+    }
+  }
+}
+```
+
+* If you're running the Docker container, edit `claude_desktop_config.json` as follows:
+
+```JSON
+{
+  "mcpServers": {
+    "docker-mcp-template": {
       "command": "npx",
       "args": [
         "mcp-remote",
-        "http://127.0.0.1:5000/mcp",
+        "http://localhost:8080/mcp",
         "--transport",
         "http-first"
       ]
@@ -76,17 +103,24 @@ of IDE. It should be formatted as such:
 }
 ```
 
-Choose either the ```"weather-stdio"``` block to connect with stdio,
-the ```"weather-sse"``` block to connect with sse,
-or the ```"mydocker"``` block to connect with docker.
+* Restart Claude Desktop, check the Search and Tools button for the tools
+  available to the LLM, and ask the following questions:
 
-Quit and reopen Claude Desktop, check the Search and Tools button for the tools
-available to the llm, and ask Claude a question that custom tools can answer.
-If it uses web search to get its answer, include "Use the tools provided and
-don't use the web" in your prompt.
+```
+What are the cities in California? 
+What is the hottest city in California?
+What are the cities in Massachusetts?
+```
 
-When debugging Claude Desktop, running this in the terminal will give you an idea of why your MCP connections are
-failing:
+To demonstrate the precision with which tools are called, ask:
+
+```
+What is the hottest city in Massachusetts?
+```
+
+* Make sure you restart Claude Desktop after any edits on `claude_desktop_config.json`
+
+When debugging Claude Desktop, the log is available with:
 
 ```bash
 tail -n 20 -F ~/Library/Logs/Claude/mcp*.log

@@ -25,14 +25,15 @@ fun createServer() =
   ).apply {
     // Adding tool via mcp_utils
     integrateTools(MyTools())
+
     // Adding tool via explicit addTools() call
     addTool(
-      name = "kotlin-sdk-tool",
-      description = "A test tool",
+      name = "getMassCities",
+      description = "List of cities in Massachusetts",
       inputSchema = Tool.Input()
     ) { request ->
       CallToolResult(
-        content = listOf(TextContent("Hello, world!"))
+        content = listOf("Boston", "Springfield", "Salem", "Cambridge", "Plymouth").map { TextContent(it) }
       )
     }
   }
