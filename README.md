@@ -12,9 +12,7 @@ in Claude Desktop via MCP servers.
 
 * Click on
   the [![](https://github.com/mattbobambrose/mcp-template/blob/master/docs/template_button.png)button](https://github.com/mattbobambrose/mcp-template/generate)
-
-Create a repository from [this template](https://github.com/mattbobambrose/mcp-template) by clicking on the
-`Use this template` button.
+  above to clone the template repo and create your own ReadingBat content
 
 In an Intellij terminal, either run ```make jar runsse``` or run SSEMain.
 
