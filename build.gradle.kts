@@ -2,8 +2,8 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 plugins {
   alias(libs.plugins.kotlin.jvm)
-//  alias(libs.plugins.shadow)
   alias(libs.plugins.ktor)
+  alias(libs.plugins.versions)
   application
 }
 
@@ -21,10 +21,9 @@ repositories {
 
 dependencies {
   implementation(libs.mcp.kotlin)
-  implementation("ch.qos.logback:logback-classic:1.4.14")
+//  implementation("ch.qos.logback:logback-classic:1.4.14")
 //    implementation(libs.slf4j)
   implementation(libs.ktor.client.content.negotation)
-  implementation(libs.ktor.serialization)
   implementation(libs.utils.json)
   implementation(libs.mcp.tools)
   testImplementation(libs.kotlin.test)

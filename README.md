@@ -16,24 +16,27 @@ how to integrate custom tools.
   the [![](https://github.com/mattbobambrose/mcp-template/blob/master/docs/template_button.png)button](https://github.com/mattbobambrose/mcp-template/generate)
   above to clone the template repo and create your own MCP server.
 
-* Open the code in [Intellij](https://www.jetbrains.com/idea/).
+* Open the repo in [Intellij](https://www.jetbrains.com/idea/).
 
-## Building an SSE Server
+## Building an MCP Server with SSE
 
-* The SSE server can be run from Intellij by running the main() in SSEMain.kt
-* To run from the CLI, build the jar with `./gradlew sse` and run with
+* Run the SSE server from Intellij by running the main() in SSEMain.kt
+* To run the server from the CLI, build the jar with `./gradlew sse` and run it with
   `java -jar ./build/libs/SSEServer.jar`
 
-## Building an STDIO Server
+## Building an MCP Server with STDIO
 
-* Build the jar with `./gradlew stdio` and run with the desired MCP client.
+* Build the jar with `./gradlew stdio` and run it with the desired MCP client.
 
 ## Testing with MCP Inspector
 
 Launch the [MCP Inspector](https://github.com/modelcontextprotocol/inspector) with:
+
 ```bash 
 DANGEROUSLY_OMIT_AUTH=true npx @modelcontextprotocol/inspector
 ```
+
+and go to the inspector with your browser and try the following configurations:
 
 ### SSE Configuration
 
@@ -55,23 +58,13 @@ DANGEROUSLY_OMIT_AUTH=true npx @modelcontextprotocol/inspector
 * `getTemperature` causes problems in the MCP Inspector, so don't test it for now.
 * Note: If you recompile the jar, you will need to restart the MCP Inspector as well.
 
-### Docker Configuration
-
-The Docker configuration will create an image using the SSEServer.jar.
-
-* Build the jar with `./gradlew sse`
-* Build the image with `docker build -t my-mcp-server .`
-* Run the container with `docker run -p 8080:8080 my-mcp-server`
-* Confirm that the container is running using the MCP Inspector as described above in the SSE Configuration section.
-
 ## Working with Claude Desktop and SSE
 
 * Download [Claude Desktop](https://claude.ai/download) and sign in if needed.
 * Start the server using either `java -jar ./build/libs/SSEServer.jar` or `docker run -p 8080:8080 my-mcp-server`
-* Open Claude Desktop and go to Claude -> Settings -> Developer -> Edit Config.
-* If you're running the jar file, edit `claude_desktop_config.json` as follows:
+* Open Claude Desktop and go to Claude -> Settings -> Developer -> Edit Config
+* Edit `claude_desktop_config.json` as follows:
 
-###  
 ```JSON
 {
   "mcpServers": {
@@ -81,24 +74,6 @@ The Docker configuration will create an image using the SSEServer.jar.
         "-y",
         "mcp-remote",
         "http://localhost:8080/sse"
-      ]
-    }
-  }
-}
-```
-
-* If you're running the Docker container, edit `claude_desktop_config.json` as follows:
-
-```JSON
-{
-  "mcpServers": {
-    "docker-mcp-template": {
-      "command": "npx",
-      "args": [
-        "mcp-remote",
-        "http://localhost:8080/mcp",
-        "--transport",
-        "http-first"
       ]
     }
   }
@@ -128,9 +103,19 @@ When debugging Claude Desktop, the log is available with:
 tail -n 20 -F ~/Library/Logs/Claude/mcp*.log
 ```
 
+## Docker Configuration
+
+MCP servers running in a Docker container use `SSEServer.jar`
+
+* Build the jar with `./gradlew sse`
+* Build the image with `docker build -t my-mcp-server .`
+* Run the container with `docker run -p 8080:8080 my-mcp-server`
+* Confirm that the container is running using the MCP Inspector as described above in the SSE Configuration section.
+
 ## Tools
 
-There are two ways to add new tools to the MCP server:
+There are two ways to add new tools in `MCPServer.kt`:
 
 1. Create a class such as `Tools.kt` and create functions annotated with `@LLMTool`
-2. Call the `addTool()` function in createServer() in `MCPServer.kt`
+2. Call the `addTool()` method as described in
+   the [kotlin sdk](https://github.com/modelcontextprotocol/kotlin-sdk/blob/b19d9f174691ae14d0369c7ced6c2e2723ccc0b2/src/commonMain/kotlin/io/modelcontextprotocol/kotlin/sdk/server/Server.kt#L196) 

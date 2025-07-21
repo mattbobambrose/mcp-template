@@ -23,4 +23,4 @@ EXPOSE 8080
 
 CMD []
 
-ENTRYPOINT ["java", "-server", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseG1GC", "-XX:MaxGCPauseMillis=100", "-XX:+UseStringDeduplication", "-jar", "/mcp/SSEServer.jar"]
+ENTRYPOINT ["java", "-server", "-jar", "/mcp/SSEServer.jar"]

@@ -21,3 +21,9 @@ build-docker: jars
 
 run-docker:
 	docker run -p 8080:8080 my-mcp-server
+
+versioncheck:
+	./gradlew dependencyUpdates
+
+upgrade-wrapper:
+	./gradlew wrapper --gradle-version=8.14.3 --distribution-type=bin
