@@ -16,6 +16,13 @@ how to integrate custom tools.
   the [![](https://github.com/mattbobambrose/mcp-template/blob/master/docs/template_button.png)button](https://github.com/mattbobambrose/mcp-template/generate)
   above to clone the template repo and create your own MCP server.
 
+* Or use the [gh](https://github.com/cli/cli) CLI command:
+
+```bash
+gh repo create my-mcp-server --template mattbobambrose/mcp-template --public --clone
+cd my-mcp-server
+```
+
 * Open the repo in [Intellij](https://www.jetbrains.com/idea/).
 
 ## Building an MCP Server with SSE
