@@ -1,3 +1,5 @@
+default: versioncheck
+
 clean:
 	./gradlew clean
 
