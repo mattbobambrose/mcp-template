@@ -8,7 +8,8 @@ This repository provides a Kotlin template for building MCP (Model Context Proto
 servers that integrate custom tools with MCP clients. Built with the JetBrains
 [Kotlin MCP SDK](https://github.com/modelcontextprotocol/kotlin-sdk),
 it demonstrates SSE (Server-Sent Events) and STDIO transport methods and
-how to integrate custom tools.
+how to integrate custom tools. For more details on MCP, have a look
+[here](https://www.youtube.com/watch?v=TTtQxUprbDY&list=PLbAT2y1IaF3iZJPWJuIQtpSA924lv_zJP).
 
 ## Setup
 
